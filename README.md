@@ -2,11 +2,12 @@
 Configuration and Installation instructions for VIVO's external Solr
 
 ## Requirements
-This configuration has been tested with VIVO 1.11.0 and Solr 4.7.0
+This configuration has been tested with VIVO 1.11.0 and Solr 7.4.0
 
 # Quick Start
 1. Download and install Solr 7.4.0
-   - [http://www.apache.org/dyn/closer.lua/lucene/solr/7.4.0](http://www.apache.org/dyn/closer.lua/lucene/solr/7.4.0)
+   - [http://archive.apache.org/dist/lucene/solr/7.4.0/](http://archive.apache.org/dist/lucene/solr/7.4.0/)
+   - [https://lucene.apache.org/solr/guide/7_4/installing-solr.html](https://lucene.apache.org/solr/guide/7_4/installing-solr.html)
 1. Create directory:
    ```
    ${SOLR_HOME}//opt/solr/solr-7.4.0/server/solr/vivocore/
@@ -25,9 +26,13 @@ This configuration has been tested with VIVO 1.11.0 and Solr 4.7.0
    ```bash
    ${SOLR_HOME}/bin/solr start
    ```
+1. Remove schema.xml from ${SOLR_HOME}/server/solr/vivocore/conf
+   ```
+   When solr was started it created the managed-schema automatically from the schema.xml and is no longer needed.
+   ```
 1. Update VIVO runtime.properties
    ```
-   vitro.local.solr.url = http://localhost:8983/solr/solrcore   
+   vitro.local.solr.url = http://localhost:8983/solr/vivocore   
    ```
 1. Start VIVO!
 
