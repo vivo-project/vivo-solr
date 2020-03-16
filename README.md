@@ -10,9 +10,9 @@ This configuration has been tested with VIVO 1.11.0 and Solr 7.4.0
    - [https://lucene.apache.org/solr/guide/7_4/installing-solr.html](https://lucene.apache.org/solr/guide/7_4/installing-solr.html)
 1. Create directory:
    ```
-   ${SOLR_HOME}//opt/solr/solr-7.4.0/server/solr/vivocore/
+   ${SOLR_HOME}/server/solr/vivocore/
    ```
-      - Where ${SOLR_HOME} is the directory in which you installed Solr
+      - Where ${SOLR_HOME} is the directory in which you installed Solr (e.g. `/opt/solr/solr-7.4.0/`)
 1. Add the `vivocore` directory of this GitHub repo and its contents into ${SOLR_HOME}/server/solr/
    - The end result should be a directory structure such as
    ```
