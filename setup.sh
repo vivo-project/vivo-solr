@@ -22,4 +22,4 @@ else
   echo "vivocore collection already exists";
 fi
 
-exec solr -f
+exec solr-fg
