@@ -1,13 +1,14 @@
-FROM solr:7.7.3-slim
+FROM solr:8.11
 
-RUN chmod -R ugo+w /opt/solr/server/solr/
-RUN chmod -R ugo+w /opt/solr/server/logs/
+ARG CONFIGSET=vivocore
+ENV CONFIGSET $CONFIGSET
+
+USER root
 
 COPY /vivocore/conf /opt/solr/server/solr/configsets/vivocore/conf
 
 COPY setup.sh /setup.sh
 
-USER root
 
 RUN chown -R solr:solr /opt/solr/server/solr/configsets/vivocore
 RUN chmod -R 755 /opt/solr/server/solr/configsets/vivocore
