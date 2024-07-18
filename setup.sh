@@ -9,17 +9,16 @@ fi
 
 # allow easier reset core with `docker run -e RESET_CORE=true`
 if [[ "$RESET_CORE" = "true" ]]; then
-  echo 'Removing core /opt/solr/server/solr/mycores/vivocore'
-  rm -rf /opt/solr/server/solr/mycores/vivocore
+  echo "Removing core /var/solr/data/$CONFIGSET"
+  rm -rf /var/solr/data/$CONFIGSET
 fi
 
-if [ ! -f "/opt/solr/server/solr/mycores/vivocore/core.properties" ]; then
+if [ ! -f "/var/solr/data/$CONFIGSET/core.properties" ]; then
   start-local-solr
-  solr create -c vivocore -d "/opt/solr/server/solr/configsets/vivocore" -p 8983
+  solr create -c $CONFIGSET -d "/opt/solr/server/solr/configsets/$CONFIGSET" -p 8983
   stop-local-solr
-  mv "/opt/solr/server/solr/vivocore" /opt/solr/server/solr/mycores/
 else
-  echo "vivocore collection already exists";
+  echo "$CONFIGSET collection already exists";
 fi
 
-exec solr-fg
+exec solr -f

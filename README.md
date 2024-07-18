@@ -2,7 +2,9 @@
 Configuration and Installation instructions for VIVO's external Solr
 
 ## Requirements
-This configuration has been tested with VIVO 1.11.0 and Solr 7.4.0
+This configuration has been tested with VIVO 1.12.3 and Solr 8.11.0 and with Docker
+
+When using Docker the Quick Start section below is not applicable
 
 # Quick Start
 1. Download and install Solr 7.4.0
