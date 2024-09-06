@@ -40,10 +40,10 @@ When using Docker the Quick Start section below is not applicable
 
 # Docker
 
-Run latest vivo-solr on port 8983 with data persisted at relative path `./data`.
+Run latest vivo-solr on port 8983 with solr_data persisted volume.
 
 ```
-docker run -d -p 8983:8983 -v ./data:/var/solr/data vivoweb/vivo-solr:latest
+docker run -d -p 8983:8983 -v solr_data:/var/solr/data vivoweb/vivo-solr:latest
 ```
 
 To build the docker image:
