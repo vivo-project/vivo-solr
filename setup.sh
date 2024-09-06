@@ -13,6 +13,12 @@ if [[ "$RESET_CORE" = "true" ]]; then
   rm -rf /var/solr/data/$CONFIGSET
 fi
 
+# make sure solr.xml exists if volume mounted at /var/solr/data
+if [ ! -f "/var/solr/data/solr.xml" ]; then
+  echo "Adding missing solr.xml to /var/solr/data"
+  cp /solr.xml /var/solr/data/solr.xml
+fi
+
 if [ ! -f "/var/solr/data/$CONFIGSET/core.properties" ]; then
   start-local-solr
   solr create -c $CONFIGSET -d "/opt/solr/server/solr/configsets/$CONFIGSET" -p 8983
