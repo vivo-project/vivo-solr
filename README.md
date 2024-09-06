@@ -38,6 +38,20 @@ When using Docker the Quick Start section below is not applicable
    ```
 1. Start VIVO!
 
+# Docker
+
+Run latest vivo-solr on port 8983 with data persisted at relative path `./data`.
+
+```
+docker run -d -p 8983:8983 -v ./data:/var/solr/data vivoweb/vivo-solr:latest
+```
+
+To build the docker image:
+
+```
+docker build -t vivoweb/vivo-solr:latest .
+```
+
 # Credits
 The VIVO-specific configuration and general source of this repository comes from:
 [Huda Khan](https://github.com/hudajkhan) [SolrVIVOConfiguration](https://github.com/hudajkhan/SolrVIVOConfiguration)
