@@ -2,14 +2,14 @@
 Configuration and Installation instructions for VIVO's external Solr
 
 ## Requirements
-This configuration has been tested with VIVO 1.12.3 and Solr 8.11.0 and with Docker
+This configuration has been tested with VIVO 1.15.0 and Solr 9.8.1 and with Docker
 
 When using Docker the Quick Start section below is not applicable
 
 # Quick Start
-1. Download and install Solr 7.4.0
-   - [http://archive.apache.org/dist/lucene/solr/7.4.0/](http://archive.apache.org/dist/lucene/solr/7.4.0/)
-   - [https://lucene.apache.org/solr/guide/7_4/installing-solr.html](https://lucene.apache.org/solr/guide/7_4/installing-solr.html)
+1. Download and install Solr 9.8.1
+   - [https://archive.apache.org/dist/solr/solr/9.8.1/](https://archive.apache.org/dist/solr/solr/9.8.1/)
+   - [https://solr.apache.org/guide/solr/latest/deployment-guide/installing-solr.html](https://solr.apache.org/guide/solr/latest/deployment-guide/installing-solr.html)
 1. Create directory:
    ```
    ${SOLR_HOME}/server/solr/vivocore/
@@ -34,7 +34,7 @@ When using Docker the Quick Start section below is not applicable
    ```
 1. Update VIVO runtime.properties
    ```
-   vitro.local.solr.url = http://localhost:8983/solr/vivocore   
+   vitro.local.solr.url = http://localhost:8983/solr/vivocore
    ```
 1. Start VIVO!
 
