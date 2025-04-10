@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Solr managed schema - automatically generated - DO NOT EDIT -->
-<schema name="example" version="1.5">
+<schema name="vivo-config" version="1.6">
   <uniqueKey>DocId</uniqueKey>
   <fieldType name="alphaOnlySort" class="solr.TextField" omitNorms="true" sortMissingLast="true">
     <analyzer>
@@ -22,6 +22,7 @@
   <fieldType name="boolean" class="solr.BoolField" omitNorms="true" sortMissingLast="true"/>
   <fieldType name="currency" class="solr.CurrencyField" currencyConfig="currency.xml" defaultCurrency="USD" precisionStep="8"/>
   <fieldType name="date" class="solr.TrieDateField" omitNorms="true" positionIncrementGap="0" precisionStep="0"/>
+  <fieldType name="dateRange" class="solr.DateRangeField"/>
   <fieldType name="descendent_path" class="solr.TextField">
     <analyzer type="index">
       <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/"/>
@@ -33,7 +34,7 @@
   <fieldType name="double" class="solr.TrieDoubleField" omitNorms="true" positionIncrementGap="0" precisionStep="0"/>
   <fieldType name="edgengram_stemmed" class="solr.TextField">
     <analyzer type="index">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.StopFilterFactory" words="stopwords-name.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" splitOnCaseChange="1" generateWordParts="1" catenateAll="0" catenateWords="0"/>
       <filter class="solr.LowerCaseFilterFactory"/>
@@ -41,7 +42,7 @@
       <filter class="solr.EdgeNGramFilterFactory" maxGramSize="25" minGramSize="1"/>
     </analyzer>
     <analyzer type="query">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.StopFilterFactory" words="stopwords-name.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" splitOnCaseChange="1" generateWordParts="1" catenateAll="0" catenateWords="0"/>
       <filter class="solr.LowerCaseFilterFactory"/>
@@ -62,7 +63,7 @@
   <fieldType name="float" class="solr.TrieFloatField" omitNorms="true" positionIncrementGap="0" precisionStep="0"/>
   <fieldType name="ignored" class="solr.StrField" indexed="false" stored="false" multiValued="true"/>
   <fieldType name="int" class="solr.TrieIntField" omitNorms="true" positionIncrementGap="0" precisionStep="0"/>
-  <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+  <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true"/>
   <fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType" geo="true" maxDistErr="0.000009" distErrPct="0.025" distanceUnits="degrees"/>
   <fieldType name="long" class="solr.TrieLongField" omitNorms="true" positionIncrementGap="0" precisionStep="0"/>
   <fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">
@@ -75,7 +76,7 @@
   </fieldType>
   <fieldType name="payloads" class="solr.TextField" indexed="true" stored="false">
     <analyzer>
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="float"/>
     </analyzer>
   </fieldType>
@@ -98,7 +99,7 @@
   </fieldType>
   <fieldType name="text" class="solr.TextField" autoGeneratePhraseQueries="true" positionIncrementGap="100">
     <analyzer type="index">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.ASCIIFoldingFilterFactory"/>
       <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" generateWordParts="1" catenateAll="0" catenateWords="1"/>
@@ -107,7 +108,7 @@
       <filter class="solr.SnowballPorterFilterFactory" language="English" protected="protwords.txt"/>
     </analyzer>
     <analyzer type="query">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.ASCIIFoldingFilterFactory"/>
       <filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
       <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
@@ -214,7 +215,7 @@
   </fieldType>
   <fieldType name="text_en_splitting" class="solr.TextField" autoGeneratePhraseQueries="true" positionIncrementGap="100">
     <analyzer type="index">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" splitOnCaseChange="1" generateWordParts="1" catenateAll="0" catenateWords="1"/>
       <filter class="solr.LowerCaseFilterFactory"/>
@@ -222,7 +223,7 @@
       <filter class="solr.PorterStemFilterFactory"/>
     </analyzer>
     <analyzer type="query">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
       <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" splitOnCaseChange="1" generateWordParts="1" catenateAll="0" catenateWords="0"/>
@@ -233,7 +234,7 @@
   </fieldType>
   <fieldType name="text_en_splitting_tight" class="solr.TextField" autoGeneratePhraseQueries="true" positionIncrementGap="100">
     <analyzer>
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.SynonymFilterFactory" expand="false" ignoreCase="true" synonyms="synonyms.txt"/>
       <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="0" generateWordParts="0" catenateAll="0" catenateWords="1"/>
@@ -436,7 +437,7 @@
   </fieldType>
   <fieldType name="text_stemmed" class="solr.TextField" positionIncrementGap="100">
     <analyzer>
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.StopFilterFactory" words="stopwords-name.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" splitOnCaseChange="1" generateWordParts="1" catenateAll="0" catenateWords="0"/>
       <filter class="solr.ASCIIFoldingFilterFactory"/>
@@ -462,7 +463,7 @@
   </fieldType>
   <fieldType name="text_unstemmed" class="solr.TextField" positionIncrementGap="100">
     <analyzer>
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" splitOnCaseChange="0" generateWordParts="1" catenateAll="0" catenateWords="0"/>
       <filter class="solr.ASCIIFoldingFilterFactory"/>
@@ -471,19 +472,19 @@
   </fieldType>
   <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
     <analyzer>
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
     </analyzer>
   </fieldType>
   <fieldType name="textgen" class="solr.TextField" positionIncrementGap="100">
     <analyzer type="index">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" splitOnCaseChange="0" generateWordParts="1" catenateAll="0" catenateWords="1"/>
       <filter class="solr.ASCIIFoldingFilterFactory"/>
       <filter class="solr.LowerCaseFilterFactory"/>
     </analyzer>
     <analyzer type="query">
-      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <tokenizer name="whitespace"/>
       <filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
       <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
       <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" splitOnCaseChange="0" generateWordParts="1" catenateAll="0" catenateWords="0"/>
@@ -565,8 +566,9 @@
   <dynamicField name="*_d" type="double" indexed="true" stored="true"/>
   <dynamicField name="*_p" type="location" indexed="true" stored="true"/>
   <dynamicField name="*_c" type="currency" indexed="true" stored="true"/>
-  <dynamicField name="*_label_sort"  type="sort"  indexed="true"  stored="true" />
-  <dynamicField name="*_label_display"  type="string"  indexed="true"  stored="true" />
+  <dynamicField name="*_label_sort" type="sort" indexed="true" stored="true"/>
+  <dynamicField name="*_label_display" type="string" indexed="true" stored="true"/>
+  <dynamicField name="*_drsim" type="dateRange" indexed="true" multiValued="true" stored="true"/>
   <copyField source="nameRaw" dest="NAME_PHONETIC"/>
   <copyField source="nameRaw" dest="acNameStemmed"/>
   <copyField source="nameRaw" dest="acNameUntokenized"/>
